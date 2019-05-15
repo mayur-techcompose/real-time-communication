@@ -1,0 +1,23 @@
+<% if current_user.present? %>
+    <% if message.user_id.eql?(current_user.id) %>
+        <div class="d-flex justify-content-end mb-4">
+            <div class="msg_cotainer_send">
+                <%= message.content.html_safe %>
+                <span class="msg_time_send"><%= message.created_at.strftime("%I:%M %P")%></span>
+            </div>
+            <div class="img_cont_msg">
+                <%= image_tag current_user.id.eql?(1) ? 'techcompose.png' : 'dharinsir.jpeg', class: 'rounded-circle user_img'%>
+            </div>
+        </div>
+    <% else %>
+        <div class="d-flex justify-content-start mb-4">
+            <div class="img_cont_msg">
+                <%= image_tag current_user.id.eql?(1) ? 'dharinsir.jpeg' : 'techcompose.png', class: 'rounded-circle user_img'%>
+            </div>
+            <div class="msg_cotainer">
+                <%= message.content.html_safe %>
+                <span class="msg_time_send"><%= message.created_at.strftime("%I:%M %P")%></span>
+            </div>
+        </div>
+    <% end %>
+<% end %>
